@@ -1,0 +1,75 @@
+def ssl_a(bit_string, k):
+  """
+  Сдвиг влево со знаком (SSL)
+  """
+  return bit_string[k:] + bit_string[:k]
+
+def srl_a(bit_string, k):
+  """
+  Сдвиг вправо со знаком (SRL)
+  """
+  return bit_string[-k:] + bit_string[:-k]
+
+def slc(bit_string):
+  """
+  Сдвиг влево циклический (SLC)
+  """
+  return bit_string[1:] + [bit_string[0]]
+
+def and_op(bit_string1, bit_string2):
+  """
+  Логическое И (AND)
+  """
+  return [a and b for a, b in zip(bit_string1, bit_string2)]
+
+def or_op(bit_string1, bit_string2):
+  """
+  Логическое ИЛИ (OR)
+  """
+  return [a or b for a, b in zip(bit_string1, bit_string2)]
+
+def xor_op(bit_string1, bit_string2):
+  """
+  Логическое исключающее ИЛИ (XOR)
+  """
+  return [a != b for a, b in zip(bit_string1, bit_string2)]
+
+def xnor_op(bit_string1, bit_string2):
+  """
+  Логическое исключающее ИЛИ с инверсией (XNOR)
+  """
+  return [a == b for a, b in zip(bit_string1, bit_string2)]
+
+def impl(bit_string1, bit_string2):
+  """
+  Импликация (IMPL)
+  """
+  return [not a or b for a, b in zip(bit_string1, bit_string2)]
+
+def flip(bit_string):
+  """
+  Инвертирует все биты в массиве
+  """
+  return [not b for b in bit_string]
+
+def flip(bit_string, position):
+  """
+  Инвертирует бит в указанной позиции
+  """
+  bit_string[position] = not bit_string[position]
+  return bit_string
+
+# Пример использования:
+bit_string1 = [True, False, True, True]
+bit_string2 = [False, True, False, False]
+
+print("SSL(bit_string1, 2):", ssl_a(bit_string1, 2))
+print("SRL(bit_string1, 2):", srl_a(bit_string1, 2))
+print("SLC(bit_string1):", slc(bit_string1))
+print("AND(bit_string1, bit_string2):", and_op(bit_string1, bit_string2))
+print("OR(bit_string1, bit_string2):", or_op(bit_string1, bit_string2))
+print("XOR(bit_string1, bit_string2):", xor_op(bit_string1, bit_string2))
+print("XNOR(bit_string1, bit_string2):", xnor_op(bit_string1, bit_string2))
+print("IMPL(bit_string1, bit_string2):", impl(bit_string1, bit_string2))
+print("flip(bit_string1):", flip(bit_string1))
+print("flip(bit_string1, 1):", flip(bit_string1, 1))
